@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SmartLearn AI</title>
+    <style>
+        body { font-family: Arial; padding: 40px; }
+        button { padding: 8px 15px; margin-top: 10px; }
+        .section { margin-top: 30px; }
+        .quiz-item { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+<h1>SmartLearn AI</h1>
+
+<input type="text" id="topic" placeholder="Enter topic" />
+<select id="language">
+    <option value="English">English</option>
+    <option value="Hindi">Hindi</option>
+</select>
+<button onclick="generate()">Generate</button>
+
+<div class="section">
+    <h2>Explanation</h2>
+    <p id="explanation"></p>
+</div>
+
+<div class="section">
+    <h2>Summary</h2>
+    <p id="summary"></p>
+</div>
+
+<div class="section">
+    <h2>Quiz</h2>
+    <div id="quiz"></div>
+</div>
+
+<script>
+async function generate() {
+    const topic = document.getElementById("topic").value;
+    const language = document.getElementById("language").value;
+
+    document.getElementById("explanation").innerText = "Loading...";
+    document.getElementById("summary").innerText = "";
+    document.getElementById("quiz").innerHTML = "";
+
+    const response = await fetch("http://127.0.0.1:8000/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ topic, language })
+    });
+
+    const data = await response.json();
+
+    document.getElementById("explanation").innerText = data.explanation;
+    document.getElementById("summary").innerText = data.summary;
+
+    const quizDiv = document.getElementById("quiz");
+    quizDiv.innerHTML = "";
+
+    data.quiz.forEach(q => {
+        const div = document.createElement("div");
+        div.className = "quiz-item";
+
+        let optionsHtml = "";
+        q.options.forEach(option => {
+            optionsHtml += `<div>
+                <input type="radio" name="${q.question}" value="${option}">
+                ${option}
+            </div>`;
+        });
+
+        div.innerHTML = `
+            <strong>${q.question}</strong>
+            ${optionsHtml}
+            <button onclick="alert('Correct Answer: ${q.answer}')">Show Answer</button>
+        `;
+
+        quizDiv.appendChild(div);
+    });
+}
+</script>
+
+</body>
+</html>
