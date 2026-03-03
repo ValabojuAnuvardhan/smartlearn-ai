@@ -1,0 +1,20 @@
+# SmartLearn AI - Backend Dependencies
+
+# Core Framework
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+pydantic==2.5.3
+python-dotenv==1.0.0
+
+# AI Providers (install based on your choice)
+# OpenAI (recommended for best quality)
+openai==1.10.0
+
+# Anthropic Claude (good alternative)
+anthropic==0.8.1
+
+# Google Gemini (cost-effective option)
+google-generativeai==0.3.2
+
+# Optional: For better error handling and logging
+python-multipart==0.0.6

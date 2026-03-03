@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+backend/venv/
+backend/__pycache__/
+
+# AWS
+.env
+*.pem
+*.key
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.log
+*.tmp
+test_lambda.html
+create_*.py
+setup_*.py
+split_*.py
+fix_*.py
+build_*.py
+prepare_*.py
+
+# Deployment artifacts
+*.zip
+lambda_deployment.zip
+
+# Unnecessary documentation
+DEPLOYMENT_*.md
+FINAL_*.md
+NEXT_STEPS.md
+AWS_DEPLOYMENT_GUIDE.md
+CLEAN_FRONTEND_README.md
+DEPLOY_*.md
+IMPLEMENTATION_*.md
+MIGRATION_GUIDE.md
+README_*.md
+PRINTABLE_CHECKLIST.md
+QUICK_DEPLOY_CHECKLIST.md
+START_*.md
+STEP_BY_STEP_DEPLOY.md
+SUMMARY.md
+INDEX.md
+
+# Duplicate/old files
+frontend/index-*.html
+frontend/config.js
+frontend/README.md
