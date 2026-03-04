@@ -21,7 +21,8 @@ AI-powered adaptive learning platform with interactive quizzes and progress trac
 
 ## 🚀 Live Demo
 
-[SmartLearn AI Demo](http://smartlearn-ai-demo.s3-website-us-east-1.amazonaws.com)
+- **GitHub Pages**: [https://valabojuanuvardhan.github.io/smartlearn-ai/](https://valabojuanuvardhan.github.io/smartlearn-ai/)
+- **S3 Hosting**: [http://smartlearn-ai-demo.s3-website-us-east-1.amazonaws.com](http://smartlearn-ai-demo.s3-website-us-east-1.amazonaws.com)
 
 ## 📁 Project Structure
 
