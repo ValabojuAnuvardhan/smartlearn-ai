@@ -69,7 +69,7 @@ def handle_generate(body):
         return cors_response(500, {'error': str(e)})
 
 def generate_content(topic, language, level):
-    """Generate content using Amazon Bedrock"""
+    """Generate content using Amazon Bedrock with Nova"""
     try:
         # Build prompt based on level
         if level.lower() == 'beginner':
@@ -107,20 +107,23 @@ Return ONLY valid JSON in this format:
   ]
 }}"""
 
-        # Call Bedrock
-        response = bedrock.invoke_model(
-            modelId='anthropic.claude-3-haiku-20240307-v1:0',
-            body=json.dumps({
-                'anthropic_version': 'bedrock-2023-05-31',
-                'max_tokens': 2000,
-                'temperature': 0.7,
-                'messages': [{'role': 'user', 'content': prompt}]
-            })
+        # Call Bedrock with Nova model
+        response = bedrock.converse(
+            modelId="amazon.nova-lite-v1:0",
+            messages=[
+                {
+                    "role": "user",
+                    "content": [{"text": prompt}]
+                }
+            ],
+            inferenceConfig={
+                "maxTokens": 2000,
+                "temperature": 0.7
+            }
         )
         
         # Parse response
-        result = json.loads(response['body'].read())
-        content = result['content'][0]['text']
+        content = response["output"]["message"]["content"][0]["text"]
         
         # Extract JSON
         start = content.find('{')
