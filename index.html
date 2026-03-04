@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartLearn AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">🧠</div>
+                <h1>SmartLearn <span class="ai">AI</span></h1>
+            </div>
+            <p class="tagline">Adaptive learning powered by artificial intelligence</p>
+        </header>
+        <div class="level-badge"><span class="dot"></span><span id="levelLabel">Level: Beginner</span></div>
+        <div class="input-card">
+            <div class="input-row">
+                <div class="input-group"><span class="input-icon">⚡</span><input type="text" id="topic" placeholder="Enter a topic to learn..."></div>
+                <select id="language"><option value="English">🇬🇧 English</option><option value="Hindi">🇮🇳 Hindi</option><option value="Telugu">📖 Telugu</option></select>
+            </div>
+            <div class="button-row">
+                <button class="btn btn-primary" onclick="generate()">✦ Generate Lesson</button>
+                <button class="btn btn-secondary" onclick="viewProgress()">📊 My Progress</button>
+            </div>
+        </div>
+        <div class="section" id="explanationSection" style="display:none;"><div class="card"><div class="card-header"><span class="card-title">Explanation</span></div><div class="card-body" id="explanation"></div></div></div>
+        <div class="section" id="summarySection" style="display:none;"><div class="card"><div class="card-header"><span class="card-title">Summary</span></div><div class="card-body" id="summary"></div></div></div>
+        <div class="section" id="resourcesSection" style="display:none;"><div class="card"><div class="card-header"><span class="card-title">Learn More</span></div><div id="resources"></div></div></div>
+        <div class="section" id="quizSection" style="display:none;"><div class="card"><div class="card-header"><span class="card-title">Knowledge Quiz</span><button class="btn btn-primary" onclick="startQuiz()" id="quizButton">Start Quiz</button></div><div id="quiz"></div><div class="score-display" id="scoreDisplay" style="display:none;"><span>Score: </span><span class="score-num" id="scoreNum">0</span><span id="scoreTotal"></span></div></div></div>
+        <div class="section" id="progressSection" style="display:none;"><div class="card"><div class="card-header"><span class="card-title">My Learning Progress</span></div><div id="progress"></div></div></div>
+    </div>
+    <script>window.AWS_LAMBDA_URL = "YOUR_LAMBDA_URL_HERE";</script>
+    <script src="app.js"></script>
+</body>
+</html>
