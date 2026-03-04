@@ -45,7 +45,7 @@ async function generate() {
             return;
         }
         
-        document.getElementById('explanation').textContent = data.explanation;
+        document.getElementById('explanation').innerHTML = data.explanation;
         document.getElementById('summarySection').style.display = 'block';
         document.getElementById('summary').textContent = data.summary;
         
@@ -186,5 +186,26 @@ async function viewProgress() {
             '</div>';
     } catch (e) {
         document.getElementById('progress').innerHTML = '<p style="color:#6b7280;">Could not load progress</p>';
+    }
+    
+}
+async function sendMessage(userInput) {
+    try {
+        const response = await fetch("https://jxqpkh3ehrfyvg2n65j3yuvkpe0ucliw.lambda-url.us-east-1.on.aws/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: userInput
+            })
+        });
+
+        const data = await response.json();
+        return data.response;
+
+    } catch (error) {
+        console.error("Error:", error);
+        return "Server connection failed.";
     }
 }
